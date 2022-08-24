@@ -1,0 +1,4 @@
+POST  https://3001-stevenalbernaz-planilha-bz3x6g9pai4.ws-us63.gitpod.io/transacoes
+Content-Type: application/json
+
+{"valor":10}
