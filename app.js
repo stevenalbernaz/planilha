@@ -1,3 +1,4 @@
+require('dotenv/config')
 const express = require('express')
 
 const TransacoesRepositorio = require("./transacoes-repositorio")
@@ -8,16 +9,16 @@ const port = 3001;
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`))
 
-app.get('/transacoes', (req,res) => {
+app.get('/transacoes', async (req,res) => {
   const repositorio  = new TransacoesRepositorio()
-  const transacoes = repositorio.listarTransacoes()
+  const transacoes = await repositorio.listarTransacoes()
   res.send(transacoes)
 })
 
-app.post('/transacoes', (req,res) =>{
+app.post('/transacoes', async (req,res) =>{
   const repositorio  = new TransacoesRepositorio()
   const transacao = req.body
-  repositorio.criarTransacao(transacao)
+  await repositorio.criarTransacao(transacao)
   res.status(201).send(transacao)
 })
 
